@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OpenableDoor : MonoBehaviour {
 	// Public variables
-	public GameObject monsterPrefab;
+	//public GameObject monsterPrefab;
 	public int doorOpenAngle = -90;
 	public float openSpeed = 2;
 	public int monsterRotation = 90;
@@ -32,7 +32,7 @@ public class OpenableDoor : MonoBehaviour {
 		if (doorOpen) {
 			transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, openRotation, Time.deltaTime * openSpeed);
 			// Destroy the monster after the user opens the door
-			Destroy (GameObject.FindGameObjectWithTag("Respawn"), (float).6);
+			//Destroy (GameObject.FindGameObjectWithTag("Respawn"), (float).6);
 		} 
 		// If the door flag is false, close the door
 		else {
@@ -42,7 +42,7 @@ public class OpenableDoor : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.E) && playerEnter) {
 			doorOpen = !doorOpen;
 			// Play a random door creak sound when the door opens
-			source.PlayOneShot (monsterGrowl, volHighRange);
+			//source.PlayOneShot (monsterGrowl, volHighRange);
 			float vol = Random.Range(volLowRange, volHighRange);
 			int doorSoundSelect = Random.Range(1, 3);
 			if (doorSoundSelect == 1)
@@ -57,6 +57,7 @@ public class OpenableDoor : MonoBehaviour {
 		if (player.gameObject.tag == "Player")
 			playerEnter = true;
 		// Spawn a monster once when the player is near the door
+		/*
 		if (counter < 1) {
 			GameObject monster = Instantiate (monsterPrefab, new Vector3 (transform.position.x - (float)1.1, transform.position.y - 2, transform.position.z + 2), Quaternion.Euler (0, monsterRotation, 0)) as GameObject;
 			monster.tag = "Respawn";
@@ -64,6 +65,7 @@ public class OpenableDoor : MonoBehaviour {
 				source.PlayOneShot (monsterGrowl, volHighRange);
 		}
 		counter++;
+		*/
 	}
 	
 	void OnTriggerExit(Collider player) {
